@@ -75,6 +75,7 @@ db.once('open', function () {
                 }
                 socket.request.user.room = room
                 socket.join(room)
+                // Tìm 10 message gần đây nhất của room này, emit lại cho client
                 console.log('user join room ' + room)
             })
         })
