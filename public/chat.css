@@ -1,0 +1,43 @@
+#top-bar {
+    float: right;
+}
+#center-box {
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 40px;
+    width: 500px;
+}
+#messages {
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    height: 20em;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+#chat-box {
+    height: 500px;
+    clear: both; 
+}
+#chat-input {
+    width: 500px;
+}
+#chat-input input {
+    width: 85%
+}
+#chat-input button {
+    width: 9%;
+    background: cyan;
+    border:none
+}
+.other {
+    background-color: green;
+    /* display: inline-block; */
+}
+.me {
+    text-align: right;
+    background-color: ghostwhite;
+    /* display: inline-block; */
+}
