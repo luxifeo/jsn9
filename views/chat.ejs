@@ -8,7 +8,7 @@
 
 <body>
     <div id='top-bar'>
-        <span>Hello <%= username %></span>
+      <span>Hello <span id="my-name"><%= username %></span></span>
         <button onclick='window.location.href="/logout"'>Logout</button>
     </div>
     <div id='center-box'>
@@ -16,6 +16,9 @@
             <input type='text' required>
             <button>Join room</button>
         </form>
+        <div id='notification'>
+          Please join a room
+        </div>
         <div id='chat-box'>
             <ul id='messages'></ul>
             <form id='chat-input'>
