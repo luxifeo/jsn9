@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>I saved</title>
+    <link rel="shortcut icon" href="https://cdn.glitch.com/15e09974-ca0b-420c-84c2-26cee02a7637%2Ffavicon.ico?v=1575023044545" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="chat2.css">
+</head>
+<body>
+<div class='center chat'>
+  <div class='chat-title'>
+    <h1>PLEASE SELECT AND JOIN A ROOM <span class='room-name'></span></h1>
+    <h2>Hello <span id='myName'><%= username %></span></h2>
+    <button class="logout" onclick='window.location.href="/logout"'>LOGOUT</button>
+  </div>
+  <div class='messages'>
+  </div>
+  <form class='room-box'>
+    <input type="text" class="room-input" placeholder="Type a room to join"></input>
+    <button type="submit" class="message-submit">SEND</button>
+  </form>
+  <form class='message-box' style='display:none'>
+    <input type="text" class="message-input" placeholder="Some message"></input>
+    <button type="submit" class="message-submit">SEND</button>
+  </form>
+</div>
+<div class='bg'></div>
+</body>
+<script src='jquery-3.4.1.min.js'></script>
+<script src='socket.io.js'></script>
+<script src='chat2.js'></script>
+
+</html>

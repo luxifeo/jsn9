@@ -2,7 +2,7 @@ $(document).ready(function() {
   const socket = io();
   const myName = $("#my-name").text();
   let room;
-  let msgInputForm = $('#chat-input input')
+  let msgInputForm = $("#chat-input input");
   $("#room-input").submit(function() {
     room = $("#room-input input").val();
     $("#room-input input").val("");
@@ -36,28 +36,42 @@ $(document).ready(function() {
       )
     );
   });
-  msgInputForm.on('input', function() {
-    let status; // 0 == empty, 1== typing
-    if(msgInputForm.val() != '') {
-      status = 1;
-    } else status = 0;
-    socket.emit('user typing', {username: myName, status})
-  })
+  // msgInputForm.on("input", function() {
+  //   let status; // 0 == empty, 1== typing
+  //   if (msgInputForm.val() != "") {
+  //     status = 1;
+  //   } else status = 0;
+  //   socket.emit("user typing", { username: myName, status });
+  // });
   // this event is emitted after successfully connecting
   // TODO: Display rooms info on the web, attach click event on rooms name so that user can click to join room
-  socket.on('rooms info', room => console.log(room))
+  socket.on("rooms info", function(roomList) {
+    
+    for (room in roomList) {
+      $('#room-list').append(
+        "<div class='room'><span>" + room +"</span>: " + roomList[room].length + " user<button onclick='joinRoom("+room+ ")'>Join</button></div>"
+      )
+    }
+  });
+  function joinRoom(room) {
+    socket.emit('join', room)
+  }
   // this event is called on successfully joining chat room
-  // TODO: Display user in room 
+  // TODO: Display user in room
   socket.on("users in room", clients => {
-    console.log('User in room')
+    console.log("User in room");
     console.log(clients);
   });
-  socket.on("new user", user => {
-    console.log('User joins the fun ' + user)
-  })
-  // should i name this event 'chat log' :))
-  socket.on("chat log", doc => {
+  // New user join room event
+  socket.on("user", user => {
+    let message = user.username + (user.join ? " joins room" : " leaves room");
+    $("#messages").append($('<li class="chat-noti">').html(message));
+  });
+  // received when join room successfully
+  socket.on("join success", doc => {
     $("#notification").html("Successfully join room " + room);
+    $('#room').hide();
+    $("#messages").html("");
     for (let i = doc.length - 1; i >= 0; i--) {
       if (doc[i].username == myName) {
         $("#messages").append($("<li class='me'>").html(doc[i].message));
@@ -69,6 +83,5 @@ $(document).ready(function() {
         );
       }
     }
-    // console.log(doc);
   });
 });

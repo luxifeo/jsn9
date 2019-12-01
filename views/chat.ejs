@@ -3,6 +3,7 @@
 
 <head>
     <title>I saved</title>
+    <link rel="shortcut icon" href="https://cdn.glitch.com/15e09974-ca0b-420c-84c2-26cee02a7637%2Ffavicon.ico?v=1575023044545" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="chat.css">
 </head>
 
@@ -10,6 +11,14 @@
     <div id='top-bar'>
       <span>Hello <span id="my-name"><%= username %></span></span>
         <button onclick='window.location.href="/logout"'>Logout</button>
+    </div>
+    <div id='room'>
+      <p>
+        Currently active room, click to join
+        <div id='room-list'>
+          
+      </div>
+      </p>
     </div>
     <div id='center-box'>
         <form id='room-input'>
@@ -27,6 +36,9 @@
             </form>
         </div>
     </div>
+    <div class='bg'>
+      
+  </div>
 </body>
 <script src='jquery-3.4.1.min.js'></script>
 <script src='socket.io.js'></script>
